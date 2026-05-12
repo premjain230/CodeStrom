@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodeStorm</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+body{
+    background:linear-gradient(135deg,#050816,#0b1026,#111827);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* LANDING PAGE */
+
+#landing{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+}
+
+.logo{
+    font-size:80px;
+    font-weight:bold;
+    color:cyan;
+    text-shadow:0 0 20px cyan;
+    animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{
+        text-shadow:0 0 10px cyan;
+    }
+
+    to{
+        text-shadow:0 0 40px cyan;
+    }
+}
+
+.tagline{
+    margin-top:20px;
+    font-size:22px;
+    color:lightgray;
+}
+
+input{
+    margin-top:40px;
+    width:320px;
+    padding:18px;
+    border:none;
+    border-radius:12px;
+    outline:none;
+    font-size:18px;
+    background:#1e293b;
+    color:white;
+}
+
+button{
+    margin-top:20px;
+    padding:15px 40px;
+    border:none;
+    border-radius:12px;
+    background:cyan;
+    color:black;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 25px cyan;
+}
+
+#message{
+    margin-top:20px;
+    color:lime;
+    display:none;
+}
+
+/* MAIN WEBSITE */
+
+#main{
+    display:none;
+    padding:40px;
+}
+
+.navbar{
+    background:#0f172a;
+    padding:20px;
+    border-radius:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 0 20px rgba(0,255,255,0.3);
+}
+
+.navbar h1{
+    color:cyan;
+}
+
+.links a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.hero{
+    margin-top:60px;
+    text-align:center;
+}
+
+.hero h2{
+    font-size:60px;
+    color:white;
+}
+
+.hero span{
+    color:cyan;
+}
+
+.hero p{
+    margin-top:20px;
+    color:lightgray;
+    font-size:20px;
+}
+
+/* CODE CARDS */
+
+.section-title{
+    margin-top:70px;
+    margin-bottom:30px;
+    font-size:40px;
+    color:cyan;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:#111827;
+    padding:25px;
+    border-radius:20px;
+    transition:0.3s;
+    box-shadow:0 0 20px rgba(0,255,255,0.1);
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 30px cyan;
+}
+
+.card h3{
+    margin-bottom:15px;
+    color:cyan;
+}
+
+pre{
+    background:black;
+    color:lime;
+    padding:15px;
+    border-radius:10px;
+    overflow-x:auto;
+}
+
+.footer{
+    margin-top:80px;
+    text-align:center;
+    color:gray;
+}
+
+</style>
+</head>
+<body>
+
+<!-- LANDING -->
+
+<div id="landing">
+
+    <div class="logo">
+        CodeStorm
+    </div>
+
+    <div class="tagline">
+        Learn Coding • Build Projects • Become Legendary
+    </div>
+
+    <input type="email" id="email" placeholder="Enter your email">
+
+    <button onclick="enterWebsite()">
+        UNLOCK WEBSITE
+    </button>
+
+    <div id="message">
+        Email sent successfully 😎
+    </div>
+
+</div>
+
+<!-- MAIN WEBSITE -->
+
+<div id="main">
+
+    <div class="navbar">
+
+        <h1>CodeStorm</h1>
+
+        <div class="links">
+            <a href="#">Python</a>
+            <a href="#">HTML</a>
+            <a href="#">JavaScript</a>
+            <a href="#">Projects</a>
+        </div>
+
+    </div>
+
+    <div class="hero">
+
+        <h2>
+            Free <span>Code</span> For Developers
+        </h2>
+
+        <p>
+            Beginner-friendly coding snippets and projects.
+        </p>
+
+    </div>
+
+    <!-- PYTHON -->
+
+    <div class="section-title">
+        Python Codes
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Calculator</h3>
+
+<pre>
+a = int(input())
+
+b = int(input())
+
+print(a+b)
+</pre>
+
+        </div>
+
+        <div class="card">
+            <h3>Guessing Game</h3>
+
+<pre>
+import random
+
+number = random.randint(1,10)
+
+guess = int(input())
+
+if guess == number:
+    print("Win")
+</pre>
+
+        </div>
+
+        <div class="card">
+            <h3>Password Generator</h3>
+
+<pre>
+import random
+
+chars = "abc123"
+
+password = ""
+
+for i in range(8):
+    password += random.choice(chars)
+
+print(password)
+</pre>
+
+        </div>
+
+    </div>
+
+    <!-- HTML -->
+
+    <div class="section-title">
+        HTML Codes
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Button</h3>
+
+<pre>
+&lt;button&gt;
+Click Me
+&lt;/button&gt;
+</pre>
+
+        </div>
+
+        <div class="card">
+            <h3>Navbar</h3>
+
+<pre>
+&lt;div class="navbar"&gt;
+My Website
+&lt;/div&gt;
+</pre>
+
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+
+    <div class="section-title">
+        JavaScript Codes
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Popup</h3>
+
+<pre>
+alert("Hello")
+</pre>
+
+        </div>
+
+        <div class="card">
+            <h3>Counter</h3>
+
+<pre>
+let number = 0
+
+number++
+
+console.log(number)
+</pre>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        CodeStorm © 2026
+    </div>
+
+</div>
+
+<script>
+
+function enterWebsite(){
+
+    let email = document.getElementById("email").value
+
+    if(email == ""){
+        alert("Enter email first")
+        return
+    }
+
+    document.getElementById("message").style.display = "block"
+
+    setTimeout(() => {
+
+        document.getElementById("landing").style.display = "none"
+
+        document.getElementById("main").style.display = "block"
+
+    },1500)
+}
+
+</script>
+
+</body>
+</html>
