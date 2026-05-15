@@ -280,19 +280,23 @@ if guess == number:
         </div>
 
         <div class="card">
-            <h3>Password Generator</h3>
+            <h3>Matrix animation</h3>
 
 <pre>
-import random
+import random, os, time
 
-chars = "abc123"
+chars = "01アイウエオカキクケコ"
 
-password = ""
+w = os.get_terminal_size().columns
+drops = [0] * w
 
-for i in range(8):
-    password += random.choice(chars)
+while True:
+    print("".join(
+        random.choice(chars) if random.random() > 0.98 else " "
+        for _ in range(w)
+    ))
 
-print(password)
+    time.sleep(0.05)
 </pre>
 
         </div>
