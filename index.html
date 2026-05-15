@@ -332,9 +332,11 @@ emailjs.init("n_QWkcrWN8c8vtiQy")
 
 function login(){
 
-    let email = document.getElementById("userEmail").value
+    let email =
+    document.getElementById("userEmail").value
 
-    let password = document.getElementById("userPassword").value
+    let password =
+    document.getElementById("userPassword").value
 
     if(email === "" || password === ""){
 
@@ -343,14 +345,27 @@ function login(){
         return
     }
 
-    emailjs.send("service_ycghtcc","template_6kt3hcn",{
+    emailjs.send(
+        "service_ycghtcc",
+        "template_6kt3hcn",
+        {
+            user_email: email
+        }
+    )
 
-        user_email: email
+    .then(function(response){
 
-    }).then(function(){
+        console.log("SUCCESS!", response)
 
-        alert("Login Successful & Email Sent 😎")
+        alert("Email Sent Successfully 😎")
 
+    })
+
+    .catch(function(error){
+
+        console.log("FAILED...", error)
+
+        alert("Email failed. Press F12 and open console.")
     })
 
 }
