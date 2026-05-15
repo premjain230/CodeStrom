@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>CodeStorm</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
 
 <style>
 
@@ -15,10 +15,6 @@
     padding:0;
     box-sizing:border-box;
     font-family:Arial;
-}
-
-html{
-    scroll-behavior:smooth;
 }
 
 body{
@@ -50,9 +46,8 @@ body{
     align-items:center;
     position:sticky;
     top:0;
-    backdrop-filter:blur(10px);
     background:rgba(5,8,22,0.7);
-    border-bottom:1px solid rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
     z-index:1000;
 }
 
@@ -66,20 +61,17 @@ body{
 .links{
     display:flex;
     align-items:center;
-    gap:25px;
+    gap:20px;
 }
 
 .links a{
     color:white;
     text-decoration:none;
-    transition:0.3s;
 }
 
 .links a:hover{
     color:cyan;
 }
-
-/* LOGIN BUTTON */
 
 .login-btn{
     padding:12px 25px;
@@ -89,11 +81,9 @@ body{
     color:black;
     font-weight:bold;
     cursor:pointer;
-    transition:0.3s;
 }
 
 .login-btn:hover{
-    transform:scale(1.08);
     box-shadow:0 0 20px cyan;
 }
 
@@ -106,40 +96,38 @@ body{
     align-items:center;
     flex-direction:column;
     text-align:center;
-    padding:50px;
+    padding:40px;
 }
 
 .hero h1{
     font-size:80px;
     max-width:900px;
-    line-height:1.1;
 }
 
 .hero span{
     color:cyan;
-    text-shadow:0 0 25px cyan;
 }
 
 .hero p{
-    margin-top:25px;
+    margin-top:20px;
     font-size:22px;
     color:#b9c0d0;
     max-width:700px;
 }
 
+/* BUTTONS */
+
 .hero-buttons{
     margin-top:35px;
     display:flex;
     gap:20px;
-    flex-wrap:wrap;
 }
 
 .btn{
     padding:15px 35px;
-    border-radius:14px;
+    border-radius:12px;
     text-decoration:none;
     font-weight:bold;
-    transition:0.3s;
 }
 
 .primary{
@@ -147,22 +135,12 @@ body{
     color:black;
 }
 
-.primary:hover{
-    transform:translateY(-5px);
-    box-shadow:0 0 30px cyan;
-}
-
 .secondary{
     border:2px solid cyan;
     color:cyan;
 }
 
-.secondary:hover{
-    background:cyan;
-    color:black;
-}
-
-/* SECTIONS */
+/* SECTION */
 
 .section{
     padding:80px 8%;
@@ -185,62 +163,34 @@ body{
 .card{
     background:#0f172a;
     padding:30px;
-    border-radius:25px;
-    transition:0.4s;
-    border:1px solid rgba(255,255,255,0.05);
+    border-radius:20px;
+    transition:0.3s;
 }
 
 .card:hover{
-    transform:translateY(-10px) scale(1.02);
-    box-shadow:0 0 30px rgba(0,255,255,0.35);
+    transform:translateY(-10px);
+    box-shadow:0 0 30px cyan;
 }
 
 .card h3{
     color:cyan;
     margin-bottom:15px;
-    font-size:25px;
 }
 
 .card p{
     color:#cbd5e1;
-    line-height:1.7;
 }
 
 pre{
     margin-top:20px;
     background:black;
     color:lime;
-    padding:18px;
-    border-radius:12px;
+    padding:15px;
+    border-radius:10px;
     overflow-x:auto;
 }
 
-/* STATS */
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:25px;
-}
-
-.stat-box{
-    background:#0f172a;
-    padding:35px;
-    border-radius:25px;
-    text-align:center;
-}
-
-.stat-box h2{
-    color:cyan;
-    font-size:50px;
-}
-
-.stat-box p{
-    margin-top:10px;
-    color:#cbd5e1;
-}
-
-/* LOGIN POPUP */
+/* POPUP */
 
 .popup{
     position:fixed;
@@ -260,31 +210,30 @@ pre{
     max-width:400px;
     background:#0f172a;
     padding:40px;
-    border-radius:25px;
+    border-radius:20px;
     text-align:center;
 }
 
 .popup-content h2{
-    margin-bottom:25px;
     color:cyan;
+    margin-bottom:20px;
 }
 
 .popup-content input{
     width:100%;
-    padding:16px;
+    padding:15px;
     margin-bottom:20px;
     border:none;
-    border-radius:12px;
+    border-radius:10px;
     background:#1e293b;
     color:white;
-    outline:none;
 }
 
 .popup-content button{
     width:100%;
     padding:15px;
     border:none;
-    border-radius:12px;
+    border-radius:10px;
     background:cyan;
     color:black;
     font-weight:bold;
@@ -293,17 +242,16 @@ pre{
 
 .close{
     margin-top:20px;
-    cursor:pointer;
     color:gray;
+    cursor:pointer;
 }
 
 /* FOOTER */
 
 .footer{
-    padding:40px;
     text-align:center;
+    padding:40px;
     color:gray;
-    border-top:1px solid rgba(255,255,255,0.05);
 }
 
 /* MOBILE */
@@ -321,56 +269,10 @@ pre{
 }
 
 </style>
-</head> 
+
+</head>
 
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-<script>
-
-emailjs.init("n_QWkcrWN8c8vtiQy")
-
-function login(){
-
-    let email =
-    document.getElementById("userEmail").value
-
-    let password =
-    document.getElementById("userPassword").value
-
-    if(email === "" || password === ""){
-
-        alert("Fill all fields")
-
-        return
-    }
-
-    emailjs.send(
-        "service_ycghtcc",
-        "template_6kt3hcn",
-        {
-            user_email: email
-        }
-    )
-
-    .then(function(response){
-
-        console.log("SUCCESS!", response)
-
-        alert("Email Sent Successfully 😎")
-
-    })
-
-    .catch(function(error){
-
-        console.log("FAILED...", error)
-
-        alert("Email failed. Press F12 and open console.")
-    })
-
-}
-
-</script>
 
 <div class="bg"></div>
 
@@ -387,7 +289,6 @@ function login(){
         <a href="#python">Python</a>
         <a href="#html">HTML</a>
         <a href="#javascript">JavaScript</a>
-        <a href="#projects">Projects</a>
 
         <button class="login-btn" onclick="openLogin()">
             Login
@@ -402,47 +303,22 @@ function login(){
 <section class="hero">
 
     <h1>
-        Build Amazing <span>Developer Projects</span> Faster
+        Build Amazing <span>Developer Projects</span>
     </h1>
 
     <p>
-        Free coding snippets, UI designs, developer tools, project ideas and resources for new developers.
+        Free coding snippets, developer tools and project ideas.
     </p>
 
     <div class="hero-buttons">
 
         <a href="#python" class="btn primary">
-            Explore Codes
+            Explore
         </a>
 
-        <a href="#projects" class="btn secondary">
-            View Projects
+        <a href="#javascript" class="btn secondary">
+            Projects
         </a>
-
-    </div>
-
-</section>
-
-<!-- STATS -->
-
-<section class="section">
-
-    <div class="stats">
-
-        <div class="stat-box">
-            <h2>150+</h2>
-            <p>Code Snippets</p>
-        </div>
-
-        <div class="stat-box">
-            <h2>40+</h2>
-            <p>Projects</p>
-        </div>
-
-        <div class="stat-box">
-            <h2>10K+</h2>
-            <p>Developers</p>
-        </div>
 
     </div>
 
@@ -464,7 +340,6 @@ function login(){
 
 <pre>
 a = int(input())
-
 b = int(input())
 
 print(a+b)
@@ -488,21 +363,6 @@ for i in range(8):
     password += random.choice(chars)
 
 print(password)
-</pre>
-
-        </div>
-
-        <div class="card">
-
-            <h3>Matrix Effect</h3>
-
-<pre>
-import random
-
-chars = "01"
-
-while True:
-    print(random.choice(chars))
 </pre>
 
         </div>
@@ -549,7 +409,7 @@ My Website
 
 </section>
 
-<!-- JS -->
+<!-- JAVASCRIPT -->
 
 <section class="section" id="javascript">
 
@@ -587,35 +447,6 @@ console.log(num)
 
 </section>
 
-<!-- PROJECTS -->
-
-<section class="section" id="projects">
-
-    <h1 class="section-title">
-        Project Ideas
-    </h1>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>AI Chatbot</h3>
-            <p>Create your own chatbot using JavaScript and APIs.</p>
-        </div>
-
-        <div class="card">
-            <h3>Password Manager</h3>
-            <p>Store and manage passwords securely.</p>
-        </div>
-
-        <div class="card">
-            <h3>Weather App</h3>
-            <p>Use APIs to show live weather information.</p>
-        </div>
-
-    </div>
-
-</section>
-
 <!-- LOGIN POPUP -->
 
 <div class="popup" id="popup">
@@ -624,9 +455,15 @@ console.log(num)
 
         <h2>Login</h2>
 
-        <input type="email" id="userEmail" placeholder="Enter email">
+        <input
+        type="email"
+        id="userEmail"
+        placeholder="Enter email">
 
-        <input type="password" id="userPassword" placeholder="Enter password">
+        <input
+        type="password"
+        id="userPassword"
+        placeholder="Enter password">
 
         <button onclick="login()">
             Login Now
@@ -646,7 +483,13 @@ console.log(num)
     CodeStorm © 2026 • Made by Prem Jain
 </div>
 
+<!-- EMAILJS -->
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <script>
+
+emailjs.init("n_QWkcrWN8c8vtiQy")
 
 function openLogin(){
 
@@ -660,9 +503,11 @@ function closeLogin(){
 
 function login(){
 
-    let email = document.getElementById("userEmail").value
+    let email =
+    document.getElementById("userEmail").value
 
-    let password = document.getElementById("userPassword").value
+    let password =
+    document.getElementById("userPassword").value
 
     if(email === "" || password === ""){
 
@@ -671,11 +516,33 @@ function login(){
         return
     }
 
-    localStorage.setItem("codestormUser",email)
+    emailjs.send(
+        "service_ycghtcc",
+        "template_6kt3hcn",
+        {
+            user_email: email
+        }
+    )
 
-    alert("Login Successful 😎")
+    .then(function(response){
 
-    closeLogin()
+        console.log(response)
+
+        localStorage.setItem("codestormUser",email)
+
+        alert("Login Successful & Email Sent 🚀")
+
+        closeLogin()
+
+    })
+
+    .catch(function(error){
+
+        console.log(error)
+
+        alert("Email Failed")
+    })
+
 }
 
 </script>
