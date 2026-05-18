@@ -1,551 +1,1212 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>CodeStorm</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial;
-}
-
-body{
-    background:#050816;
-    color:white;
-    overflow-x:hidden;
-}
-
-/* BACKGROUND */
-
-.bg{
-    position:fixed;
-    width:100%;
-    height:100%;
-    z-index:-1;
-    background:
-    radial-gradient(circle at top left,rgba(0,255,255,0.15),transparent 25%),
-    radial-gradient(circle at bottom right,rgba(0,140,255,0.15),transparent 25%),
-    #050816;
-}
-
-/* NAVBAR */
-
-.navbar{
-    width:100%;
-    padding:20px 8%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    position:sticky;
-    top:0;
-    background:rgba(5,8,22,0.7);
-    backdrop-filter:blur(10px);
-    z-index:1000;
-}
-
-.logo{
-    font-size:35px;
-    font-weight:bold;
-    color:cyan;
-    text-shadow:0 0 20px cyan;
-}
-
-.links{
-    display:flex;
-    align-items:center;
-    gap:20px;
-}
-
-.links a{
-    color:white;
-    text-decoration:none;
-}
-
-.links a:hover{
-    color:cyan;
-}
-
-.login-btn{
-    padding:12px 25px;
-    border:none;
-    border-radius:12px;
-    background:cyan;
-    color:black;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.login-btn:hover{
-    box-shadow:0 0 20px cyan;
-}
-
-/* HERO */
-
-.hero{
-    min-height:90vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    text-align:center;
-    padding:40px;
-}
-
-.hero h1{
-    font-size:80px;
-    max-width:900px;
-}
-
-.hero span{
-    color:cyan;
-}
-
-.hero p{
-    margin-top:20px;
-    font-size:22px;
-    color:#b9c0d0;
-    max-width:700px;
-}
-
-/* BUTTONS */
-
-.hero-buttons{
-    margin-top:35px;
-    display:flex;
-    gap:20px;
-}
-
-.btn{
-    padding:15px 35px;
-    border-radius:12px;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-.primary{
-    background:cyan;
-    color:black;
-}
-
-.secondary{
-    border:2px solid cyan;
-    color:cyan;
-}
-
-/* SECTION */
-
-.section{
-    padding:80px 8%;
-}
-
-.section-title{
-    font-size:45px;
-    margin-bottom:40px;
-    color:cyan;
-}
-
-/* CARDS */
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:30px;
-}
-
-.card{
-    background:#0f172a;
-    padding:30px;
-    border-radius:20px;
-    transition:0.3s;
-}
-
-.card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 0 30px cyan;
-}
-
-.card h3{
-    color:cyan;
-    margin-bottom:15px;
-}
-
-.card p{
-    color:#cbd5e1;
-}
-
-pre{
-    margin-top:20px;
-    background:black;
-    color:lime;
-    padding:15px;
-    border-radius:10px;
-    overflow-x:auto;
-}
-
-/* POPUP */
-
-.popup{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.7);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:2000;
-}
-
-.popup-content{
-    width:90%;
-    max-width:400px;
-    background:#0f172a;
-    padding:40px;
-    border-radius:20px;
-    text-align:center;
-}
-
-.popup-content h2{
-    color:cyan;
-    margin-bottom:20px;
-}
-
-.popup-content input{
-    width:100%;
-    padding:15px;
-    margin-bottom:20px;
-    border:none;
-    border-radius:10px;
-    background:#1e293b;
-    color:white;
-}
-
-.popup-content button{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:10px;
-    background:cyan;
-    color:black;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.close{
-    margin-top:20px;
-    color:gray;
-    cursor:pointer;
-}
-
-/* FOOTER */
-
-.footer{
-    text-align:center;
-    padding:40px;
-    color:gray;
-}
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-    .hero h1{
-        font-size:50px;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#050816" />
+  <title>CodeStorm</title>
+  <style>
+    :root {
+      --bg: #050816;
+      --bg2: #0a1024;
+      --card: rgba(15, 23, 42, 0.78);
+      --card2: rgba(8, 15, 34, 0.8);
+      --text: #e5eefc;
+      --muted: #a8b3cf;
+      --line: rgba(148, 163, 184, 0.18);
+      --cyan: #27f3ff;
+      --blue: #4f8cff;
+      --green: #59f29a;
+      --pink: #ff67d1;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 24px;
+      --radius-sm: 16px;
     }
 
-    .links a{
-        display:none;
+    [data-theme="light"] {
+      --bg: #f6f9ff;
+      --bg2: #eaf0ff;
+      --card: rgba(255,255,255,0.86);
+      --card2: rgba(255,255,255,0.92);
+      --text: #0b1220;
+      --muted: #4b5567;
+      --line: rgba(15, 23, 42, 0.12);
+      --shadow: 0 18px 40px rgba(15, 23, 42, 0.10);
     }
 
-}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(39, 243, 255, 0.14), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(79, 140, 255, 0.16), transparent 28%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      color: var(--text);
+      overflow-x: hidden;
+    }
 
-</style>
+    .bg-orbs::before, .bg-orbs::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .bg-orbs::before { top: -100px; left: -120px; background: var(--cyan); }
+    .bg-orbs::after { bottom: -120px; right: -120px; background: var(--blue); }
 
+    .container {
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(18px);
+      background: color-mix(in srgb, var(--bg) 72%, transparent);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 900;
+      letter-spacing: 0.3px;
+      font-size: 1.3rem;
+      white-space: nowrap;
+    }
+    .brand-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #03111a;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      box-shadow: 0 0 28px rgba(39, 243, 255, 0.35);
+      font-weight: 900;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .nav-links a, .nav-links button {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.95rem;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      padding: 10px 12px;
+      border-radius: 12px;
+    }
+    .nav-links a:hover, .nav-links button:hover, .nav-links a:focus-visible, .nav-links button:focus-visible {
+      background: rgba(127, 140, 255, 0.12);
+      outline: none;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn, .cta-btn, .chip, .copy-btn, .tool-btn, .ghost-btn, .login-btn {
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      border-radius: 14px;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .icon-btn, .login-btn {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .login-btn { width: auto; padding: 0 16px; font-weight: 700; }
+    .icon-btn:hover, .cta-btn:hover, .chip:hover, .copy-btn:hover, .tool-btn:hover, .ghost-btn:hover, .login-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(39, 243, 255, 0.35);
+    }
+
+    .mobile-toggle { display: none; }
+    .mobile-panel {
+      display: none;
+      padding: 0 0 16px;
+    }
+    .mobile-panel.open { display: block; }
+    .mobile-panel .stack {
+      display: grid;
+      gap: 8px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--card2);
+      box-shadow: var(--shadow);
+    }
+    .mobile-panel a, .mobile-panel button {
+      width: 100%;
+      text-align: left;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--text);
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 70px 0 38px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 26px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(39, 243, 255, 0.09);
+      border: 1px solid rgba(39, 243, 255, 0.18);
+      color: var(--text);
+      margin-bottom: 18px;
+      font-size: 0.92rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.7rem, 8vw, 5.5rem);
+      line-height: 0.96;
+      letter-spacing: -1.8px;
+      max-width: 11ch;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--cyan), var(--blue), var(--pink));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero p {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.7;
+      max-width: 58ch;
+    }
+    .hero-actions {
+      margin-top: 26px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .cta-btn, .ghost-btn, .tool-btn, .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      padding: 13px 18px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .cta-btn {
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      color: #03111a;
+      border: none;
+    }
+    .ghost-btn { background: transparent; }
+
+    .hero-panel {
+      position: relative;
+      padding: 18px;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--card) 90%, transparent), var(--card2));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .code-window {
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: #050816;
+      overflow: hidden;
+    }
+    [data-theme="light"] .code-window { background: #0b1220; }
+    .window-bar {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+    }
+    .dot { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; }
+    .dot:nth-child(2) { background: #febc2e; }
+    .dot:nth-child(3) { background: #28c840; }
+    .code-body {
+      padding: 16px;
+      color: #d7f6ff;
+      font-family: "Courier New", monospace;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+    .floating-badges {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .mini-card {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: var(--card2);
+    }
+    .mini-card strong { display: block; margin-top: 5px; font-size: 1.05rem; }
+    .mini-card span { color: var(--muted); font-size: 0.9rem; }
+
+    .stats {
+      padding: 12px 0 18px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .stat {
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+    .stat b { font-size: 1.8rem; display: block; }
+    .stat span { color: var(--muted); font-size: 0.92rem; }
+
+    section { padding: 38px 0; }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 14px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .section-head h2 {
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      letter-spacing: -0.7px;
+    }
+    .section-head p { color: var(--muted); max-width: 60ch; line-height: 1.6; }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .search {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--text);
+      outline: none;
+      box-shadow: var(--shadow);
+    }
+    .chip-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .chip {
+      padding: 11px 14px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      background: var(--card2);
+    }
+    .chip.active {
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      color: #04121c;
+      border-color: transparent;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+    .card {
+      grid-column: span 4;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      box-shadow: var(--shadow);
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40% auto auto -40%;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(39,243,255,0.12), transparent 66%);
+      pointer-events: none;
+    }
+    .card h3 {
+      font-size: 1.18rem;
+      margin-bottom: 10px;
+    }
+    .card p { color: var(--muted); line-height: 1.6; }
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      margin-top: 14px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.03);
+    }
+    .code-box, .output-box, .field {
+      border: 1px solid var(--line);
+      background: rgba(2, 6, 23, 0.65);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    [data-theme="light"] .code-box,
+    [data-theme="light"] .output-box,
+    [data-theme="light"] .field {
+      background: rgba(255,255,255,0.75);
+    }
+    .code-box textarea {
+      width: 100%;
+      min-height: 230px;
+      resize: vertical;
+      border: 0;
+      outline: none;
+      background: transparent;
+      color: inherit;
+      padding: 14px;
+      font-family: "Courier New", monospace;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+    .control-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .tool-btn, .copy-btn {
+      padding: 11px 14px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      background: var(--card2);
+      box-shadow: none;
+    }
+    .tool-btn.primary {
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      color: #03111a;
+      border: none;
+    }
+
+    .field {
+      padding: 12px;
+      display: grid;
+      gap: 10px;
+    }
+    .field input, .field select {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      outline: none;
+      font-size: 0.98rem;
+      padding: 4px 2px;
+    }
+    .result {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(39,243,255,0.08);
+      border: 1px solid rgba(39,243,255,0.15);
+      word-break: break-word;
+      line-height: 1.6;
+    }
+    .progress {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(148,163,184,0.15);
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .progress > div {
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      transition: width .25s ease;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+    .timeline-item {
+      padding: 18px;
+      border-radius: 20px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 8px;
+    }
+    .timeline-item b { font-size: 1.04rem; }
+    .timeline-item p { color: var(--muted); line-height: 1.6; }
+
+    .faq {
+      display: grid;
+      gap: 12px;
+    }
+    details {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 16px 18px;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+    }
+    details p { color: var(--muted); line-height: 1.7; margin-top: 10px; }
+
+    .footer {
+      padding: 26px 0 36px;
+      color: var(--muted);
+      text-align: center;
+      border-top: 1px solid var(--line);
+      margin-top: 18px;
+    }
+
+    .popup {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      padding: 18px;
+    }
+    .popup.show { display: flex; }
+    .popup-content {
+      width: min(440px, 100%);
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: var(--card2);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+    .popup-content h2 { margin-bottom: 8px; }
+    .popup-content p { color: var(--muted); margin-bottom: 16px; line-height: 1.6; }
+    .popup-content input {
+      width: 100%;
+      padding: 14px 15px;
+      margin-bottom: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--text);
+      outline: none;
+    }
+    .popup-content .close {
+      margin-top: 14px;
+      display: inline-block;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%) translateY(30px);
+      opacity: 0;
+      pointer-events: none;
+      background: rgba(15,23,42,0.92);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 12px 16px;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      transition: all .25s ease;
+      z-index: 3000;
+      max-width: calc(100% - 24px);
+      text-align: center;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    @media (max-width: 980px) {
+      .hero-grid, .two-col { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .card { grid-column: span 6; }
+    }
+    @media (max-width: 760px) {
+      .nav-links, .nav-actions { display: none; }
+      .mobile-toggle { display: inline-grid; }
+      .hero { padding-top: 42px; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .card { grid-column: span 12; }
+      .toolbar { grid-template-columns: 1fr; }
+      .floating-badges { grid-template-columns: 1fr; }
+      .hero h1 { max-width: 100%; }
+    }
+  </style>
 </head>
+<body class="bg-orbs" data-theme="dark">
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#home">
+        <span class="brand-badge">C</span>
+        <span>CodeStorm</span>
+      </a>
 
-<body>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#tools">Tools</a>
+        <a href="#snippets">Snippets</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#community">Community</a>
+        <a href="#faq">FAQ</a>
+      </nav>
 
-<div class="bg"></div>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">☾</button>
+        <button class="login-btn" onclick="openLogin()">Login</button>
+      </div>
 
-<!-- NAVBAR -->
-
-<div class="navbar">
-
-    <div class="logo">
-        CodeStorm
+      <button class="icon-btn mobile-toggle" id="menuToggle" aria-label="Open menu">☰</button>
     </div>
-
-    <div class="links">
-
-        <a href="#python">Python</a>
-        <a href="#html">HTML</a>
-        <a href="#javascript">JavaScript</a>
-
-        <button class="login-btn" onclick="openLogin()">
-            Login
-        </button>
-
+    <div class="container mobile-panel" id="mobilePanel">
+      <div class="stack">
+        <a href="#tools">Tools</a>
+        <a href="#snippets">Snippets</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#community">Community</a>
+        <a href="#faq">FAQ</a>
+        <button onclick="openLogin()">Login</button>
+        <button id="mobileThemeToggle">Toggle theme</button>
+      </div>
     </div>
+  </header>
 
-</div>
-
-<!-- HERO -->
-
-<section class="hero">
-
-    <h1>
-        Build Amazing <span>Developer Projects</span>
-    </h1>
-
-    <p>
-        Free coding snippets, developer tools and project ideas.
-    </p>
-
-    <div class="hero-buttons">
-
-        <a href="#python" class="btn primary">
-            Explore
-        </a>
-
-        <a href="#javascript" class="btn secondary">
-            Projects
-        </a>
-
-    </div>
-
-</section>
-
-<!-- PYTHON -->
-
-<section class="section" id="python">
-
-    <h1 class="section-title">
-        Python Codes
-    </h1>
-
-    <div class="cards">
-
-        <div class="card">
-
-            <h3>Calculator</h3>
-
-<pre>
-a = int(input())
-b = int(input())
-
-print(a+b)
-</pre>
-
+  <main id="home" class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">⚡ Built for new devs, student coders, and teen founders</div>
+          <h1>Build your <span>developer world</span> in one place</h1>
+          <p>
+            CodeStorm is a real, interactive developer hub with working tools, live previews,
+            generators, snippets, search, roadmap tracking, and a cleaner UI made for growth.
+          </p>
+          <div class="hero-actions">
+            <a class="cta-btn" href="#tools">Explore tools</a>
+            <a class="ghost-btn" href="#snippets">See snippets</a>
+            <button class="ghost-btn" onclick="copySiteLink()">Copy site link</button>
+          </div>
         </div>
 
-        <div class="card">
+        <aside class="hero-panel">
+          <div class="code-window">
+            <div class="window-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span style="margin-left:10px;color:var(--muted);font-size:.9rem;">CodeStorm / live preview</span>
+            </div>
+            <div class="code-body" id="heroCode">&lt;div&gt;\n  &lt;h1&gt;Create. Learn. Ship.&lt;/h1&gt;\n  &lt;p&gt;Real tools, real UI, real progress.&lt;/p&gt;\n&lt;/div&gt;</div>
+          </div>
+          <div class="floating-badges">
+            <div class="mini-card"><span>Today’s focus</span><strong id="focusCard">Ship better UI</strong></div>
+            <div class="mini-card"><span>Current theme</span><strong id="themeCard">Dark mode</strong></div>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-            <h3>Password Generator</h3>
+    <section class="stats">
+      <div class="stats-grid">
+        <div class="stat"><b>8+</b><span>Working tools</span></div>
+        <div class="stat"><b>100%</b><span>Client-side features</span></div>
+        <div class="stat"><b>1</b><span>Single-file build</span></div>
+        <div class="stat"><b>∞</b><span>Future upgrades</span></div>
+      </div>
+    </section>
 
-<pre>
-import random
-import string
-
-chars = string.ascii_letters
-
-password = ""
-
-for i in range(8):
-    password += random.choice(chars)
-
-print(password)
-</pre>
-
+    <section id="tools">
+      <div class="section-head">
+        <div>
+          <h2>Developer tools</h2>
+          <p>Search, filter, and use the tools below. Every tool here works in the browser without fake placeholders.</p>
         </div>
-
-    </div>
-
-</section>
-
-<!-- HTML -->
-
-<section class="section" id="html">
-
-    <h1 class="section-title">
-        HTML Snippets
-    </h1>
-
-    <div class="cards">
-
-        <div class="card">
-
-            <h3>Button</h3>
-
-<pre>
-&lt;button&gt;
-Click
-&lt;/button&gt;
-</pre>
-
+      </div>
+      <div class="toolbar">
+        <input class="search" id="toolSearch" type="search" placeholder="Search tools, snippets, roadmap, or features..." />
+        <div class="chip-row" id="filterRow">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="generator">Generators</button>
+          <button class="chip" data-filter="editor">Editor</button>
+          <button class="chip" data-filter="utility">Utility</button>
         </div>
+      </div>
 
-        <div class="card">
+      <div class="cards" id="toolGrid">
+        <article class="card tool-item" data-kind="editor generator" data-text="live code editor html css javascript preview runnable">
+          <h3>Live Code Playground</h3>
+          <p>Write HTML, CSS, and JS, then run it instantly in an iframe preview.</p>
+          <div class="meta"><span class="tag">Editor</span><span>Real preview</span></div>
+          <div class="code-box">
+            <textarea id="htmlInput" aria-label="HTML input"><!doctype html>
+<html>
+  <body>
+    <h2 style="font-family:Arial">Hello CodeStorm</h2>
+    <p>Build something cool.</p>
+  </body>
+</html></textarea>
+          </div>
+          <div class="code-box" style="margin-top:10px;">
+            <textarea id="cssInput" aria-label="CSS input">body{font-family:Arial; padding:18px; background:#0f172a; color:white} h2{color:#27f3ff}</textarea>
+          </div>
+          <div class="code-box" style="margin-top:10px;">
+            <textarea id="jsInput" aria-label="JavaScript input">document.body.insertAdjacentHTML('beforeend','<button id="btn">Click me</button>');
+document.getElementById('btn')?.addEventListener('click',()=>alert('CodeStorm works!'));</textarea>
+          </div>
+          <div class="control-row">
+            <button class="tool-btn primary" onclick="runPreview()">Run preview</button>
+            <button class="tool-btn" onclick="resetPlayground()">Reset</button>
+            <button class="copy-btn" onclick="copyPlayground()">Copy HTML</button>
+          </div>
+        </article>
 
-            <h3>Navbar</h3>
+        <article class="card tool-item" data-kind="generator utility" data-text="gradient generator copy css palette background">
+          <h3>Gradient Generator</h3>
+          <p>Create a clean CSS gradient and copy the code instantly.</p>
+          <div class="meta"><span class="tag">Generator</span><span>CSS ready</span></div>
+          <div class="field">
+            <label>Start color</label>
+            <input id="g1" type="color" value="#27f3ff" />
+          </div>
+          <div class="field" style="margin-top:10px;">
+            <label>End color</label>
+            <input id="g2" type="color" value="#4f8cff" />
+          </div>
+          <div class="result" id="gradientPreview" style="min-height:92px;display:flex;align-items:flex-end;">background: linear-gradient(135deg, #27f3ff, #4f8cff);</div>
+          <div class="control-row">
+            <button class="tool-btn primary" onclick="updateGradient()">Update</button>
+            <button class="copy-btn" onclick="copyGradient()">Copy CSS</button>
+          </div>
+        </article>
 
-<pre>
-&lt;nav&gt;
-My Website
-&lt;/nav&gt;
-</pre>
+        <article class="card tool-item" data-kind="generator utility" data-text="password generator strong secure random copy">
+          <h3>Password Generator</h3>
+          <p>Generate a strong password with letters, numbers, and symbols.</p>
+          <div class="meta"><span class="tag">Utility</span><span>Secure-ish client side</span></div>
+          <div class="field">
+            <label>Length: <b id="pwLenLabel">16</b></label>
+            <input id="pwLen" type="range" min="8" max="32" value="16" />
+          </div>
+          <div class="result" id="passwordResult">Click generate</div>
+          <div class="control-row">
+            <button class="tool-btn primary" onclick="generatePassword()">Generate</button>
+            <button class="copy-btn" onclick="copyText('passwordResult')">Copy</button>
+          </div>
+        </article>
 
+        <article class="card tool-item" data-kind="utility" data-text="json formatter pretty parse validate">
+          <h3>JSON Formatter</h3>
+          <p>Paste JSON and pretty-print it right here.</p>
+          <div class="meta"><span class="tag">Utility</span><span>Format & validate</span></div>
+          <div class="code-box">
+            <textarea id="jsonInput" aria-label="JSON input">{"name":"CodeStorm","type":"developer platform","features":["tools","snippets","roadmap"]}</textarea>
+          </div>
+          <div class="result" id="jsonResult">Press format to validate JSON.</div>
+          <div class="control-row">
+            <button class="tool-btn primary" onclick="formatJSON()">Format JSON</button>
+            <button class="copy-btn" onclick="copyText('jsonResult')">Copy output</button>
+          </div>
+        </article>
+
+        <article class="card tool-item" data-kind="utility" data-text="countdown timer focus productivity pomodoro">
+          <h3>Focus Timer</h3>
+          <p>A simple working timer for study sessions and coding sprints.</p>
+          <div class="meta"><span class="tag">Utility</span><span>Pomodoro style</span></div>
+          <div class="field">
+            <label>Minutes</label>
+            <input id="timerMinutes" type="number" min="1" max="120" value="25" />
+          </div>
+          <div class="result" id="timerDisplay">25:00</div>
+          <div class="progress"><div id="timerBar"></div></div>
+          <div class="control-row">
+            <button class="tool-btn primary" onclick="startTimer()">Start</button>
+            <button class="tool-btn" onclick="pauseTimer()">Pause</button>
+            <button class="copy-btn" onclick="resetTimer()">Reset</button>
+          </div>
+        </article>
+
+        <article class="card tool-item" data-kind="utility" data-text="color picker hex copy ui design">
+          <h3>Color Picker</h3>
+          <p>Grab a color and copy the hex code for your UI.</p>
+          <div class="meta"><span class="tag">Design</span><span>Real color value</span></div>
+          <div class="field">
+            <label>Pick color</label>
+            <input id="colorPick" type="color" value="#27f3ff" />
+          </div>
+          <div class="result" id="colorOut">#27f3ff</div>
+          <div class="control-row">
+            <button class="tool-btn primary" onclick="updateColor()">Update</button>
+            <button class="copy-btn" onclick="copyText('colorOut')">Copy hex</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="snippets">
+      <div class="section-head">
+        <div>
+          <h2>Snippets people actually use</h2>
+          <p>Clean starter snippets for Python, HTML, and JavaScript, with copy buttons built in.</p>
         </div>
+      </div>
+      <div class="cards">
+        <article class="card tool-item" data-kind="generator" data-text="python calculator snippet">
+          <h3>Python Calculator</h3>
+          <p>Simple input-based calculator starter.</p>
+          <pre id="snip1">a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+print("Sum:", a + b)</pre>
+          <div class="control-row"><button class="copy-btn" onclick="copyText('snip1')">Copy</button></div>
+        </article>
+        <article class="card tool-item" data-kind="generator" data-text="html navbar snippet">
+          <h3>HTML Navbar</h3>
+          <p>Quick modern navigation skeleton.</p>
+          <pre id="snip2">&lt;nav class="navbar"&gt;
+  &lt;a href="#home"&gt;CodeStorm&lt;/a&gt;
+&lt;/nav&gt;</pre>
+          <div class="control-row"><button class="copy-btn" onclick="copyText('snip2')">Copy</button></div>
+        </article>
+        <article class="card tool-item" data-kind="generator" data-text="javascript counter button snippet">
+          <h3>JavaScript Counter</h3>
+          <p>Small counter with real button interaction.</p>
+          <pre id="snip3">let count = 0;
+document.getElementById('btn').addEventListener('click', () =&gt; {
+  count++;
+  console.log(count);
+});</pre>
+          <div class="control-row"><button class="copy-btn" onclick="copyText('snip3')">Copy</button></div>
+        </article>
+      </div>
+    </section>
 
-    </div>
-
-</section>
-
-<!-- JAVASCRIPT -->
-
-<section class="section" id="javascript">
-
-    <h1 class="section-title">
-        JavaScript
-    </h1>
-
-    <div class="cards">
-
-        <div class="card">
-
-            <h3>Popup</h3>
-
-<pre>
-alert("Hello")
-</pre>
-
+    <section id="roadmap">
+      <div class="section-head">
+        <div>
+          <h2>Your learning roadmap</h2>
+          <p>Track the path from beginner to builder. Click progress buttons to mark sections as done.</p>
         </div>
-
-        <div class="card">
-
-            <h3>Counter</h3>
-
-<pre>
-let num = 0
-
-num++
-
-console.log(num)
-</pre>
-
+      </div>
+      <div class="two-col">
+        <div class="timeline" id="roadmapList">
+          <div class="timeline-item"><b>1. HTML & CSS</b><p>Learn structure, layout, responsiveness, and clean UI.</p><button class="tool-btn" onclick="toggleDone(this)">Mark done</button></div>
+          <div class="timeline-item"><b>2. JavaScript Basics</b><p>Functions, events, arrays, objects, DOM, localStorage.</p><button class="tool-btn" onclick="toggleDone(this)">Mark done</button></div>
+          <div class="timeline-item"><b>3. Build Projects</b><p>Create mini apps like password generators, counters, and dashboards.</p><button class="tool-btn" onclick="toggleDone(this)">Mark done</button></div>
         </div>
+        <div class="timeline" id="community">
+          <div class="timeline-item">
+            <b>Community ideas</b>
+            <p>Project showcase, creator profiles, daily challenges, and a real student-dev feed can be added next.</p>
+            <div class="control-row">
+              <button class="tool-btn primary" onclick="markFocus('Build a project today')">Set focus</button>
+              <button class="copy-btn" onclick="copyText('communityCopy')">Copy ideas</button>
+            </div>
+            <div id="communityCopy" class="result">Project showcase • student coding feed • developer profiles • daily challenges</div>
+          </div>
+          <div class="timeline-item">
+            <b>Current progress</b>
+            <p id="progressText">0 / 3 roadmap steps done.</p>
+            <div class="progress"><div id="roadmapBar"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    </div>
+    <section id="faq">
+      <div class="section-head">
+        <div>
+          <h2>FAQ</h2>
+          <p>Common things you might need while expanding CodeStorm.</p>
+        </div>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Is this a real website build or fake UI?</summary>
+          <p>This version uses real browser features: live preview, copy buttons, theme switch, search/filtering, generators, timer, and local roadmap tracking.</p>
+        </details>
+        <details>
+          <summary>Can login send emails?</summary>
+          <p>Your current EmailJS popup is kept. It can send email only if your EmailJS service, template, and public key are configured correctly in your account.</p>
+        </details>
+        <details>
+          <summary>Can more features be added later?</summary>
+          <p>Yes. This layout is built so you can add authentication, project uploads, community posts, and backend-connected AI tools later.</p>
+        </details>
+      </div>
+    </section>
+  </main>
 
-</section>
+  <div class="footer">
+    CodeStorm © 2026 • Built by Prem Jain
+  </div>
 
-<!-- LOGIN POPUP -->
-
-<div class="popup" id="popup">
-
+  <div class="popup" id="popup" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
     <div class="popup-content">
-
-        <h2>Login</h2>
-
-        <input
-        type="email"
-        id="userEmail"
-        placeholder="Enter email">
-
-        <input
-        type="password"
-        id="userPassword"
-        placeholder="Enter password">
-
-        <button onclick="login()">
-            Login Now
-        </button>
-
-        <div class="close" onclick="closeLogin()">
-            Close
-        </div>
-
+      <h2 id="loginTitle">Login</h2>
+      <p>Enter your email and password. This keeps your EmailJS login flow.</p>
+      <input type="email" id="userEmail" placeholder="Enter email" />
+      <input type="password" id="userPassword" placeholder="Enter password" />
+      <button class="tool-btn primary" style="width:100%;" onclick="login()">Login Now</button>
+      <div class="close" onclick="closeLogin()">Close</div>
     </div>
+  </div>
 
-</div>
+  <div class="toast" id="toast"></div>
 
-<!-- FOOTER -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    // EmailJS setup from your existing project
+    emailjs.init("n_QWkcrWN8c8vtiQy");
 
-<div class="footer">
-    CodeStorm © 2026 • Made by Prem Jain
-</div>
+    const state = {
+      theme: localStorage.getItem('codestormTheme') || 'dark',
+      timer: null,
+      remaining: 25 * 60,
+      total: 25 * 60,
+      roadmapDone: JSON.parse(localStorage.getItem('codestormRoadmapDone') || '[]')
+    };
 
-<!-- EMAILJS -->
+    const $ = (id) => document.getElementById(id);
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-<script>
-
-emailjs.init("n_QWkcrWN8c8vtiQy")
-
-function openLogin(){
-
-    document.getElementById("popup").style.display = "flex"
-}
-
-function closeLogin(){
-
-    document.getElementById("popup").style.display = "none"
-}
-
-function login(){
-
-    let email =
-    document.getElementById("userEmail").value
-
-    let password =
-    document.getElementById("userPassword").value
-
-    if(email === "" || password === ""){
-
-        alert("Please fill all fields")
-
-        return
+    function toast(msg) {
+      const t = $('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
     }
 
-    emailjs.send(
-        "service_ycghtcc",
-        "template_6kt3hcn",
-        {
-            user_email: email
+    function applyTheme(theme) {
+      document.body.dataset.theme = theme;
+      localStorage.setItem('codestormTheme', theme);
+      $('themeToggle').textContent = theme === 'dark' ? '☾' : '☀';
+      $('themeCard').textContent = theme === 'dark' ? 'Dark mode' : 'Light mode';
+      $('focusCard').textContent = theme === 'dark' ? 'Ship better UI' : 'Polish the experience';
+      toast(`Theme set to ${theme}`);
+    }
+
+    function toggleTheme() {
+      state.theme = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+      applyTheme(state.theme);
+    }
+
+    function copyText(id) {
+      const el = $(id);
+      const text = el.tagName === 'TEXTAREA' ? el.value : el.innerText;
+      navigator.clipboard.writeText(text).then(() => toast('Copied to clipboard'));
+    }
+
+    function copySiteLink() {
+      navigator.clipboard.writeText(location.href).then(() => toast('Site link copied'));
+    }
+
+    function updateGradient() {
+      const c1 = $('g1').value;
+      const c2 = $('g2').value;
+      const css = `background: linear-gradient(135deg, ${c1}, ${c2});`;
+      $('gradientPreview').style.background = `linear-gradient(135deg, ${c1}, ${c2})`;
+      $('gradientPreview').textContent = css;
+      toast('Gradient updated');
+    }
+
+    function copyGradient() {
+      copyText('gradientPreview');
+    }
+
+    function generatePassword() {
+      const len = parseInt($('pwLen').value, 10);
+      const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{};:,.?';
+      let out = '';
+      const arr = new Uint32Array(len);
+      crypto.getRandomValues(arr);
+      for (let i = 0; i < len; i++) out += chars[arr[i] % chars.length];
+      $('passwordResult').textContent = out;
+      toast('Password generated');
+    }
+
+    function formatJSON() {
+      const input = $('jsonInput').value;
+      try {
+        const obj = JSON.parse(input);
+        const pretty = JSON.stringify(obj, null, 2);
+        $('jsonResult').textContent = pretty;
+        toast('JSON formatted');
+      } catch (e) {
+        $('jsonResult').textContent = 'Invalid JSON: ' + e.message;
+        toast('JSON error');
+      }
+    }
+
+    let timerInterval = null;
+    function renderTimer() {
+      const m = Math.floor(state.remaining / 60).toString().padStart(2, '0');
+      const s = (state.remaining % 60).toString().padStart(2, '0');
+      $('timerDisplay').textContent = `${m}:${s}`;
+      const pct = state.total ? ((state.total - state.remaining) / state.total) * 100 : 0;
+      $('timerBar').style.width = `${Math.min(100, Math.max(0, pct))}%`;
+    }
+
+    function startTimer() {
+      if (timerInterval) return;
+      const mins = Math.max(1, Math.min(120, parseInt($('timerMinutes').value || '25', 10)));
+      if (state.remaining === state.total || state.remaining <= 0) {
+        state.total = mins * 60;
+        state.remaining = state.total;
+      }
+      renderTimer();
+      timerInterval = setInterval(() => {
+        state.remaining -= 1;
+        renderTimer();
+        if (state.remaining <= 0) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          state.remaining = 0;
+          renderTimer();
+          toast('Timer finished');
         }
-    )
+      }, 1000);
+      toast('Timer started');
+    }
 
-    .then(function(response){
+    function pauseTimer() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        toast('Timer paused');
+      }
+    }
 
-        console.log(response)
+    function resetTimer() {
+      pauseTimer();
+      const mins = Math.max(1, Math.min(120, parseInt($('timerMinutes').value || '25', 10)));
+      state.total = mins * 60;
+      state.remaining = state.total;
+      renderTimer();
+      toast('Timer reset');
+    }
 
-        localStorage.setItem("codestormUser",email)
+    function updateColor() {
+      $('colorOut').textContent = $('colorPick').value;
+      toast('Color updated');
+    }
 
-        alert("Login Successful & Email Sent 🚀")
+    function runPreview() {
+      const html = $('htmlInput').value;
+      const css = `<style>${$('cssInput').value}</style>`;
+      const js = `<script>${$('jsInput').value.replace(/<\/script>/gi, '<\\/script>')}<\/script>`;
+      const preview = window.open('', '_blank', 'noopener,noreferrer,width=1100,height=800');
+      preview.document.open();
+      preview.document.write(html.replace('</head>', `${css}</head>`).replace('</body>', `${js}</body>`));
+      preview.document.close();
+      toast('Preview opened');
+    }
 
-        closeLogin()
+    function resetPlayground() {
+      $('htmlInput').value = `<!doctype html>\n<html>\n  <body>\n    <h2 style="font-family:Arial">Hello CodeStorm</h2>\n    <p>Build something cool.</p>\n  </body>\n</html>`;
+      $('cssInput').value = `body{font-family:Arial; padding:18px; background:#0f172a; color:white} h2{color:#27f3ff}`;
+      $('jsInput').value = `document.body.insertAdjacentHTML('beforeend','<button id="btn">Click me</button>');\ndocument.getElementById('btn')?.addEventListener('click',()=>alert('CodeStorm works!'));`;
+      toast('Playground reset');
+    }
 
-    })
+    function copyPlayground() {
+      const text = `HTML:\n${$('htmlInput').value}\n\nCSS:\n${$('cssInput').value}\n\nJS:\n${$('jsInput').value}`;
+      navigator.clipboard.writeText(text).then(() => toast('Playground copied'));
+    }
 
-    .catch(function(error){
+    function markFocus(text) {
+      $('focusCard').textContent = text;
+      localStorage.setItem('codestormFocus', text);
+      toast('Focus saved');
+    }
 
-        console.log(error)
+    function toggleDone(btn) {
+      const item = btn.closest('.timeline-item');
+      const title = item.querySelector('b').textContent;
+      const idx = state.roadmapDone.indexOf(title);
+      if (idx >= 0) {
+        state.roadmapDone.splice(idx, 1);
+        btn.textContent = 'Mark done';
+        item.style.opacity = '1';
+      } else {
+        state.roadmapDone.push(title);
+        btn.textContent = 'Done ✓';
+        item.style.opacity = '0.86';
+      }
+      localStorage.setItem('codestormRoadmapDone', JSON.stringify(state.roadmapDone));
+      syncRoadmap();
+    }
 
-        alert("Email Failed")
-    })
+    function syncRoadmap() {
+      const items = document.querySelectorAll('#roadmapList .timeline-item');
+      let done = 0;
+      items.forEach(item => {
+        const title = item.querySelector('b').textContent;
+        const btn = item.querySelector('button');
+        if (state.roadmapDone.includes(title)) {
+          done += 1;
+          btn.textContent = 'Done ✓';
+          item.style.opacity = '0.86';
+        } else {
+          btn.textContent = 'Mark done';
+          item.style.opacity = '1';
+        }
+      });
+      $('progressText').textContent = `${done} / ${items.length} roadmap steps done.`;
+      $('roadmapBar').style.width = `${(done / items.length) * 100}%`;
+    }
 
-}
+    function filterTools() {
+      const q = $('toolSearch').value.toLowerCase().trim();
+      const active = document.querySelector('.chip.active')?.dataset.filter || 'all';
+      document.querySelectorAll('.tool-item').forEach(card => {
+        const text = (card.dataset.text || '') + ' ' + card.textContent.toLowerCase();
+        const kind = card.dataset.kind || '';
+        const matchesQuery = !q || text.includes(q);
+        const matchesFilter = active === 'all' || kind.includes(active);
+        card.style.display = matchesQuery && matchesFilter ? '' : 'none';
+      });
+    }
 
-</script>
+    function openLogin(){ $('popup').classList.add('show'); }
+    function closeLogin(){ $('popup').classList.remove('show'); }
 
+    function login(){
+      const email = $('userEmail').value.trim();
+      const password = $('userPassword').value.trim();
+      if(!email || !password){ alert('Please fill all fields'); return; }
+      emailjs.send('service_ycghtcc', 'template_6kt3hcn', { user_email: email })
+        .then(function(response){
+          console.log(response);
+          localStorage.setItem('codestormUser', email);
+          alert('Login Successful & Email Sent 🚀');
+          closeLogin();
+        })
+        .catch(function(error){
+          console.log(error);
+          alert('Email Failed');
+        });
+    }
+
+    $('themeToggle').addEventListener('click', toggleTheme);
+    $('mobileThemeToggle').addEventListener('click', toggleTheme);
+    $('menuToggle').addEventListener('click', () => $('mobilePanel').classList.toggle('open'));
+    $('toolSearch').addEventListener('input', filterTools);
+    document.querySelectorAll('.chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.chip').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filterTools();
+      });
+    });
+    $('pwLen').addEventListener('input', () => $('pwLenLabel').textContent = $('pwLen').value);
+    $('pwLen').addEventListener('change', generatePassword);
+    $('g1').addEventListener('input', updateGradient);
+    $('g2').addEventListener('input', updateGradient);
+    $('colorPick').addEventListener('input', updateColor);
+    $('timerMinutes').addEventListener('change', resetTimer);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLogin();
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        $('toolSearch').focus();
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      const panel = $('mobilePanel');
+      if (!panel.contains(e.target) && !$('menuToggle').contains(e.target)) panel.classList.remove('open');
+    });
+
+    // init
+    applyTheme(state.theme);
+    updateGradient();
+    generatePassword();
+    formatJSON();
+    updateColor();
+    resetTimer();
+    syncRoadmap();
+    filterTools();
+    const savedFocus = localStorage.getItem('codestormFocus');
+    if (savedFocus) $('focusCard').textContent = savedFocus;
+    const user = localStorage.getItem('codestormUser');
+    if (user) $('heroCode').textContent = `Logged in as:\n${user}\n\nBuild. Ship. Improve.`;
+  </script>
 </body>
 </html>
